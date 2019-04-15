@@ -50,16 +50,16 @@ void print_titre_next(char *g) {
   next();
 }
 
-void print_sbox(sbox_t *sbox) {
+void print_sbox(sbox_t sbox) {
   printf("Sbox : \n");
 
-  for (int i = 0; i <= sizeof(sbox_t); i++) {
+  for (int i = 0; i < sizeof(sbox_t); i++) {
     printf("%x ",i);
   }
   printf("\n");
 
-  for (int i = 0; i <= sizeof(sbox_t); i++) {
-    printf("%x ",*sbox[i]);
+  for (int i = 0; i < sizeof(sbox_t); i++) {
+    printf("%x ",sbox[i]);
   }
   printf("\n");
 
@@ -75,14 +75,14 @@ void print_proceeding(int iterations, int sleep_duration) {
   assert(iterations >= 0);
 
   const char *msg[] = {"echo Proceeding.", "echo Proceeding..", "echo Proceeding..."};
-  
-  clear();  
+
+  clear();
   for(int i = 0 ;  i < 3*iterations ; i++){
     system_call(msg[i%3]);
     sleep(sleep_duration);
     clear();
   }
-  
+
 }
 
 void clear(void) {
@@ -144,7 +144,7 @@ void system_call(const char cmd[]) {
 
   int status = system(cmd);
   fprintf(stderr, "%s\n", cmd);
-  
+
   if (status == -1 ) {
     fprintf(stderr, "Error with system call: Child process cannot be created\n");
     exit(EXIT_FAILURE);
@@ -163,7 +163,7 @@ inline void system_call(const char cmd[]) {
 void print_filename_of_fd(int fd) {
   char *get_filename_cmd = (char*)malloc(128*sizeof(char));
   sprintf(get_filename_cmd, "ls -la /proc/%d/fd | cut -d' ' -f12", fd);
-  system_call(get_filename_cmd);  
+  system_call(get_filename_cmd);
 }
 
 #ifdef DEBUG

@@ -35,7 +35,7 @@ ckey_t key = 0;
 void print_current_sbox(void) {
   print_titre("THE CURRENT SBOX");
 
-  print_sbox(&sbox);
+  print_sbox(sbox);
   next();
   next();
   clear();

@@ -6,7 +6,7 @@ void print_titre(char*);
 void next(void);
 void print_titre_next(char*);
 void print_next(char*, ...);
-void print_sbox(sbox_t *sbox);
+void print_sbox(sbox_t sbox);
 void print_newlines(int);
 void separation(void);
 void print_proceeding(int iterations, int sleep);
